@@ -10,11 +10,9 @@ import java.util.Set;
 @Table(name = "user_role")
 public class UserRole extends BaseEntity {
 
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "role")
+
     private Role role;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+
     private Set<User> users;
 
     public UserRole(){}
@@ -22,7 +20,8 @@ public class UserRole extends BaseEntity {
         this.role = role;
         this.users = users;
     }
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     public Set<User> getUsers() {
         return users;
     }
@@ -30,7 +29,8 @@ public class UserRole extends BaseEntity {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "role")
     public Role getRole() {
         return role;
     }

@@ -10,33 +10,20 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-    @Column(name = "username", nullable = false)
     private String username;
-
-    @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "firstName", nullable = false)
     private String firstName;
-
-    @Column(name = "lastname", nullable = false)
     private String lastName;
-
-    @Column(name = "isActive")
     private boolean isActive;
 
-    @Column(name = "imageUrl")
     private String imageUrl;
 
-    @Column(name = "modified")
     private Date modified;
 
-    @Column(name = "created")
     private Date created;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable=false)
+
     private UserRole role;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.REMOVE)
+
     Set<Offer> offers;
 
     public User(){}
@@ -55,6 +42,7 @@ public class User extends BaseEntity {
         this.created = created;
     }
 
+    @Column(name = "username", nullable = false)
     public String getUsername() {
         return username;
     }
@@ -64,6 +52,7 @@ public class User extends BaseEntity {
         this.username = username;
     }
 
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
@@ -72,6 +61,7 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
+    @Column(name = "firstName", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -80,6 +70,7 @@ public class User extends BaseEntity {
         this.firstName = firstName;
     }
 
+    @Column(name = "lastname", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -88,6 +79,7 @@ public class User extends BaseEntity {
         this.lastName = lastName;
     }
 
+    @Column(name = "imageUrl")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -96,6 +88,7 @@ public class User extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user",cascade = CascadeType.REMOVE)
     public Set<Offer> getOffers() {
         return offers;
     }
@@ -103,7 +96,9 @@ public class User extends BaseEntity {
     public void setOffers(Set<Offer> offers) {
         this.offers = offers;
     }
-
+    @ManyToOne(optional = false)
+    @Enumerated(EnumType.ORDINAL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable=false)
     public UserRole getRole() {
         return role;
     }
@@ -112,6 +107,7 @@ public class User extends BaseEntity {
         this.role = role;
     }
 
+    @Column(name = "isActive")
     public void setActive(boolean active) {
         isActive = active;
     }
@@ -119,11 +115,11 @@ public class User extends BaseEntity {
     public boolean isActive() {
         return isActive;
     }
-
+    @Column(name = "modified")
     public Date getModified() {
         return modified;
     }
-
+    @Column(name = "created")
     public Date getCreated() {
         return created;
     }

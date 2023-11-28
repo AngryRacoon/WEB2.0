@@ -9,16 +9,16 @@ import java.util.Set;
 @Entity
 @Table(name = "brands")
 public class Brand extends BaseEntity{
-    @Column(name = "brand", nullable = false)
+
     private String name;
 
-    @Column(name = "created")
+
     private Date created;
 
-    @Column(name = "modified")
+
     private Date modified;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand", cascade = CascadeType.REMOVE)
+
     private Set<Model> models;
 
     public Brand(){}
@@ -27,6 +27,7 @@ public class Brand extends BaseEntity{
         this.models = models;
     }
 
+    @Column(name = "brand", nullable = false)
     public String getBrand() {
         return name;
     }
@@ -34,7 +35,7 @@ public class Brand extends BaseEntity{
     public void setBrand(String brand) {
         this.name = brand;
     }
-
+    @Column(name = "modified")
     public Date getModified() {
         return modified;
     }
@@ -43,6 +44,7 @@ public class Brand extends BaseEntity{
         this.modified = modified;
     }
 
+    @Column(name = "created")
     public Date getCreated() {
         return created;
     }
@@ -50,7 +52,7 @@ public class Brand extends BaseEntity{
     public void setCreated(Date created) {
         this.created = created;
     }
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand", cascade = CascadeType.REMOVE)
     public Set<Model> getModels() {
         return models;
     }

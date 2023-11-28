@@ -10,33 +10,14 @@ import java.util.Set;
 
 @Table(name = "models")
 public class Model extends BaseEntity{
-    @Column (name = "name", length = 255, nullable = false)
     private String name;
-
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "category")
     private Category category;
-    @Column(name = "imageUrl", length = 255, nullable = false)
     private String imageUrl ;
-
-    @Column(name = "startYear")
     private int startYear;
-
-    @Column(name = "endYear")
     private int endYear;
-
-    @Column(name = "created")
     private Date created;
-
-    @Column(name = "modified")
     private Date modified;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "brand_id", referencedColumnName = "id", nullable=false)
     private Brand brand;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "model", cascade = CascadeType.REMOVE)
     Set<Offer> offers;
 
     public Model(){}
@@ -54,6 +35,7 @@ public class Model extends BaseEntity{
 
     }
 
+    @Column (name = "name", length = 255, nullable = false)
     public String getName() {
         return name;
     }
@@ -62,6 +44,8 @@ public class Model extends BaseEntity{
         this.name = name;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "category")
     public Category getCategory() {
         return category;
     }
@@ -70,6 +54,8 @@ public class Model extends BaseEntity{
         this.category = category;
     }
 
+    @Column(name = "imageUrl", length = 255, nullable = false)
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -77,7 +63,7 @@ public class Model extends BaseEntity{
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    @Column(name = "startYear")
     public int getStartYear() {
         return startYear;
     }
@@ -86,6 +72,7 @@ public class Model extends BaseEntity{
         this.startYear = startYear;
     }
 
+    @Column(name = "endYear")
     public int getEndYear() {
         return endYear;
     }
@@ -94,6 +81,7 @@ public class Model extends BaseEntity{
         this.endYear = endYear;
     }
 
+    @Column(name = "modified")
     public Date getModified() {
         return modified;
     }
@@ -102,6 +90,7 @@ public class Model extends BaseEntity{
         this.modified = modified;
     }
 
+    @Column(name = "created")
     public Date getCreated() {
         return created;
     }
@@ -110,6 +99,8 @@ public class Model extends BaseEntity{
         this.created = created;
     }
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "brand_id", referencedColumnName = "id", nullable=false)
     public Brand getBrand() {
         return brand;
     }
@@ -118,6 +109,7 @@ public class Model extends BaseEntity{
         this.brand = brand;
     }
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "model", cascade = CascadeType.REMOVE)
     public Set<Offer> getOffers() {
         return offers;
     }

@@ -11,45 +11,17 @@ import java.util.Date;
 @Table(name = "offers")
 public class Offer extends BaseEntity
 {
-    @Column(name = "description", length = 255, nullable = false)
     private String description ;
-
-    @Enumerated(EnumType.ORDINAL) // Сообщает JPA использовать строковое представление перечислений
-    @Column(name = "engine")
     private Engine engine;
-
-    @Column(name = "imageUrl", length = 255, nullable = false)
     private String imageUrl;
-
-    @Column(name = "mileage")
     private int mileage;
-
-    @Column(name = "price")
     private BigDecimal price;
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "transmission")
     private Transmission transmission;
-
-
-    @Column(name = "year")
     private int year;
-
-    @Column(name = "modified")
     private Date modified;
-
-    @Column(name = "created")
     private Date created;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "model_id", referencedColumnName = "id", nullable=false)
     private Model model;
-
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable=false)
     private User user;
-
     public Offer(){}
 
     public Offer(String description,Engine engine, String imageUrl, int mileage, BigDecimal price,
@@ -66,7 +38,7 @@ public class Offer extends BaseEntity
         this.created = created;
         this.modified = modified;
     }
-
+    @Column(name = "description", length = 255, nullable = false)
     public String getDescription() {
         return description;
     }
@@ -74,7 +46,8 @@ public class Offer extends BaseEntity
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @Enumerated(EnumType.ORDINAL) // Сообщает JPA использовать строковое представление перечислений.
+    @Column(name = "engine")
     public Engine getEngine() {
         return engine;
     }
@@ -82,7 +55,7 @@ public class Offer extends BaseEntity
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
-
+    @Column(name = "imageUrl", length = 255, nullable = false)
     public String getImageUrl() {
         return imageUrl;
     }
@@ -91,6 +64,7 @@ public class Offer extends BaseEntity
         this.imageUrl = imageUrl;
     }
 
+    @Column(name = "price")
     public BigDecimal getPrice() {
         return price;
     }
@@ -98,7 +72,7 @@ public class Offer extends BaseEntity
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
+    @Column(name = "mileage")
     public int getMileage() {
         return mileage;
     }
@@ -107,6 +81,7 @@ public class Offer extends BaseEntity
         this.mileage = mileage;
     }
 
+    @Column(name = "year")
     public int getYear() {
         return year;
     }
@@ -115,6 +90,8 @@ public class Offer extends BaseEntity
         this.year = year;
     }
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "model_id", referencedColumnName = "id", nullable=false)
     public Model getModel() {
         return model;
     }
@@ -123,6 +100,8 @@ public class Offer extends BaseEntity
         this.model = model;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "transmission")
     public Transmission getTransmission() {
         return transmission;
     }
@@ -131,6 +110,8 @@ public class Offer extends BaseEntity
         this.transmission = transmission;
     }
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable=false)
     public User getUser() {
         return user;
     }
@@ -139,6 +120,7 @@ public class Offer extends BaseEntity
         this.user = user;
     }
 
+    @Column(name = "created")
     public Date getCreated() {
         return created;
     }
@@ -147,6 +129,7 @@ public class Offer extends BaseEntity
         this.modified = modified;
     }
 
+    @Column(name = "modified")
     public Date getModified() {
         return modified;
     }
