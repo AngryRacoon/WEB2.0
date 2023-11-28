@@ -1,5 +1,6 @@
 package org.example.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
 import org.example.models.Model;
 import org.example.models.enums.Category;
 
@@ -9,22 +10,15 @@ import java.util.Set;
 import java.util.UUID;
 
 public class AddModelDto {
-    private UUID id;
     private String name;
     private Category category;
     private String imageUrl;
     private int startYear;
     private int endYear;
-    private BrandDto brand;
+    private String brandName;
 
-    public UUID getId() {
-        return id;
-    }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
+@NotEmpty(message = "Model name must not be null or empty!")
     public String getName() {
         return name;
     }
@@ -32,7 +26,7 @@ public class AddModelDto {
     public void setName(String name) {
         this.name = name;
     }
-
+@NotEmpty(message = "Category must not be null or empty!")
     public Category getCategory() {
         return category;
     }
@@ -48,7 +42,7 @@ public class AddModelDto {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
+    @NotEmpty(message = "Start year must not be null or empty!")
     public int getStartYear() {
         return startYear;
     }
@@ -56,22 +50,24 @@ public class AddModelDto {
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
-
+    @NotEmpty(message = "End year must not be null or empty!")
     public int getEndYear() {
         return endYear;
     }
 
+
     public void setEndYear(int endYear) {
         this.endYear = endYear;
     }
-
-    public BrandDto getBrand() {
-        return brand;
+    @NotEmpty(message = "Brand name must not be null or empty!")
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrand(BrandDto brand) {
-        this.brand = brand;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
+
 
     public AddModelDto(){}
 

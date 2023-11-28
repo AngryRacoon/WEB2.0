@@ -3,6 +3,7 @@ package org.example.services.impl;
 import org.example.dtos.AddModelDto;
 import org.example.dtos.ModelDto;
 import org.example.models.Model;
+import org.example.repositories.BrandRepository;
 import org.example.repositories.ModelRepository;
 import org.example.services.ModelService;
 import org.modelmapper.ModelMapper;
@@ -22,10 +23,14 @@ public class ModelServiceImpl implements ModelService<UUID> {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private BrandRepository brandRepository;
+
 
     @Override
     public AddModelDto register(AddModelDto model) {
         Model m = modelMapper.map(model, Model.class);
+        m.setBrand(brandRepository.findByName(model.getBrandName()).orElse(null));
         return modelMapper.map(modelRepository.save(m),AddModelDto.class);
     }
 
