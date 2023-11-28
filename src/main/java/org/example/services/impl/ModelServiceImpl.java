@@ -1,5 +1,6 @@
 package org.example.services.impl;
 
+import org.example.dtos.AddModelDto;
 import org.example.dtos.ModelDto;
 import org.example.models.Model;
 import org.example.repositories.ModelRepository;
@@ -8,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,12 +24,9 @@ public class ModelServiceImpl implements ModelService<UUID> {
 
 
     @Override
-    public ModelDto register(ModelDto model) {
-        if(model.getId()!=null){
-            model.setModified(new Date());
-        }
+    public AddModelDto register(AddModelDto model) {
         Model m = modelMapper.map(model, Model.class);
-        return modelMapper.map(modelRepository.save(m),ModelDto.class);
+        return modelMapper.map(modelRepository.save(m),AddModelDto.class);
     }
 
     @Override

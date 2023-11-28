@@ -1,15 +1,15 @@
 package org.example.models.enums;
 
 public enum Category {
-    Car("Car"), Bus("Bus"), Truck("Truck"), Motorcycle("Motorcycle");
+    Car(1), Bus(2), Truck(3), Motorcycle(4);
 
-    private final String description;
+    private final int description;
 
-    private Category(String description){
+    private Category(int description){
         this.description = description;
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 };

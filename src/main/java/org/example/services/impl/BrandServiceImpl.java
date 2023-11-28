@@ -1,5 +1,6 @@
 package org.example.services.impl;
 
+import org.example.dtos.AddBrandDto;
 import org.example.dtos.BrandDto;
 import org.example.models.Brand;
 import org.example.repositories.BrandRepository;
@@ -24,12 +25,9 @@ public class BrandServiceImpl implements BrandService<UUID> {
 
 
     @Override
-    public BrandDto register(BrandDto brand) {
-        if(brand.getId()!=null){
-            brand.setModified(new Date());
-        }
+    public AddBrandDto register(AddBrandDto brand) {
         Brand b = modelMapper.map(brand, Brand.class);
-        return modelMapper.map(brandRepository.save(b),BrandDto.class);
+        return modelMapper.map(brandRepository.save(b),AddBrandDto.class);
     }
 
     @Override

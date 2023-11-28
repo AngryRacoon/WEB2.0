@@ -27,12 +27,12 @@ public class Brand extends BaseEntity{
         this.models = models;
     }
 
-    @Column(name = "brand", nullable = false)
-    public String getBrand() {
+    @Column(name = "name", nullable = false)
+    public String getName() {
         return name;
     }
 
-    public void setBrand(String brand) {
+    public void setName(String brand) {
         this.name = brand;
     }
     @Column(name = "modified")
