@@ -35,7 +35,7 @@ public class Offer extends BaseEntity
         this.year = year;
         this.model = model;
         this.user = user;
-        this.created = created;
+        this.created = new Date();
         this.modified = modified;
     }
     @Column(name = "description", length = 255, nullable = false)

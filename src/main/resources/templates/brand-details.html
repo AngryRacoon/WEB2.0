@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"/>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Brand Details</h1>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6"><img src="/pic/company.png" height="350px"></div>
+                    <div class="col-md-6 pt-3">
+                        <h2>Brand</h2>
+                        <h4 th:text="'Name: ' + ${brandDetails.name}"></h4>
+                        <h4 th:text="'Created: ' + ${brandDetails.created}"></h4>
+                        <h4 th:text="'Modified: ' + ${brandDetails.modified}"></h4>
+                        <div th:each="m : ${brandDetails.models}" class="d-flex flex-content bg-text mb-3">
+                            <h4 >Models</h4>
+                            <h4><a class="btn-block" th:href="@{/models/{id}(id = ${m.id})}" th:text="${m.name}"></a></h4>
+                        </div>
+                        <div class="align-bottom"><a class="btn btn-danger align-bottom"
+                                                     th:href="@{/brands/delete/{id}(id=${brandDetails.id})}">Delete brand</a>
+                            <div class="align-bottom"><a class="btn align-bottom"
+                                                         th:href="@{/brands/edit/{id}(id=${brandDetails.id})}">Edit brand</a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"/>
+</body>
+</html>

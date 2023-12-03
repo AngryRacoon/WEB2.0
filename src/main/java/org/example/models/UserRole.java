@@ -8,7 +8,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user_role")
-public class UserRole extends BaseEntity {
+public class
+UserRole extends BaseEntity {
 
 
     private Role role;

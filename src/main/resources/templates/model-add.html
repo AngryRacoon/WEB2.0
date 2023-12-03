@@ -26,6 +26,16 @@
                             message</small>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="imageUrl">Image</label>
+                        <input th:field="*{imageUrl}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="imageUrl" aria-describedby="imageUrl" name="imageUrl"/>
+                        <small th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="text-danger">Error
+                            message</small>
+                    </div>
+
                     <fieldset class="mb-3">
                         <legend>Choose Category</legend>
                         <div class="form-check">

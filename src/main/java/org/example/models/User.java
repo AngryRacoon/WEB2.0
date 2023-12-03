@@ -39,7 +39,7 @@ public class User extends BaseEntity {
         this.role = role;
         this.offers = offers;
         this.modified = modified;
-        this.created = created;
+        this.created = new Date();
     }
 
     @Column(name = "username", nullable = false)

@@ -28,7 +28,7 @@ public class Model extends BaseEntity{
         this.imageUrl = imageUrl;
         this.startYear = startYear;
         this.endYear = endYear;
-        this.created = created;
+        this.created = new Date();
         this.modified = modified;
         this.brand = brand;
         this.offers = offers;

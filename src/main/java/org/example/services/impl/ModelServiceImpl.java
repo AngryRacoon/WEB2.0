@@ -1,6 +1,7 @@
 package org.example.services.impl;
 
 import org.example.dtos.AddModelDto;
+import org.example.dtos.LightModelDto;
 import org.example.dtos.ModelDto;
 import org.example.models.Model;
 import org.example.repositories.BrandRepository;
@@ -17,15 +18,27 @@ import java.util.stream.Collectors;
 
 @Service
 public class ModelServiceImpl implements ModelService<UUID> {
-    @Autowired
+
     private ModelRepository modelRepository;
 
-    @Autowired
+
     private ModelMapper modelMapper;
 
-    @Autowired
+
     private BrandRepository brandRepository;
 
+    @Autowired
+    public void setModelRepository(ModelRepository modelRepository) {
+        this.modelRepository = modelRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
+    @Autowired
+    public void setBrandRepository(BrandRepository brandRepository) {
+        this.brandRepository = brandRepository;
+    }
 
     @Override
     public AddModelDto register(AddModelDto model) {
@@ -50,8 +63,8 @@ public class ModelServiceImpl implements ModelService<UUID> {
     }
 
     @Override
-    public List<ModelDto> getAll() {
+    public List<LightModelDto> getAll() {
         return modelRepository.findAll().stream().map((m) ->
-                modelMapper.map(m, ModelDto.class)).collect(Collectors.toList());
+                modelMapper.map(m, LightModelDto.class)).collect(Collectors.toList());
     }
 }

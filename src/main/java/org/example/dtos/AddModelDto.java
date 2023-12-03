@@ -1,6 +1,8 @@
 package org.example.dtos;
 
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.example.models.Model;
 import org.example.models.enums.Category;
 
@@ -26,7 +28,7 @@ public class AddModelDto {
     public void setName(String name) {
         this.name = name;
     }
-@NotEmpty(message = "Category must not be null or empty!")
+@NotNull(message = "Category must not be null or empty!")
     public Category getCategory() {
         return category;
     }
@@ -35,6 +37,7 @@ public class AddModelDto {
         this.category = category;
     }
 
+    @NotNull(message = "Image URL must not be null or empty!")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -42,7 +45,8 @@ public class AddModelDto {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    @NotEmpty(message = "Start year must not be null or empty!")
+    @Min(value = 1, message = "End year must be a positive number!")
+    @NotNull(message = "End year must not be null or empty!")
     public int getStartYear() {
         return startYear;
     }
@@ -50,7 +54,8 @@ public class AddModelDto {
     public void setStartYear(int startYear) {
         this.startYear = startYear;
     }
-    @NotEmpty(message = "End year must not be null or empty!")
+    @Min(value = 1, message = "End year must be a positive number!")
+    @NotNull(message = "End year must not be null or empty!")
     public int getEndYear() {
         return endYear;
     }
@@ -68,8 +73,6 @@ public class AddModelDto {
         this.brandName = brandName;
     }
 
-
     public AddModelDto(){}
-
 
 }

@@ -55,10 +55,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //
 //
 //
-//        UserRoleDto ur1 = new UserRoleDto(Role.ADMIN);
-//        UserRoleDto ur2 = new UserRoleDto(Role.USER);
-//        UserRoleDto urs1 = userRoleService.register(ur1);
-//        UserRoleDto urs2 = userRoleService.register(ur2);
+        UserRoleDto ur1 = new UserRoleDto(Role.ADMIN);
+        UserRoleDto ur2 = new UserRoleDto(Role.USER);
+        UserRoleDto urs1 = userRoleService.register(ur1);
+        UserRoleDto urs2 = userRoleService.register(ur2);
 //
 //        UserDto u1 = new UserDto("Aboba", "qwerty", "Ivan", "Ivanov", true, "u1.png", urs1);
 //        UserDto u2 = new UserDto("fdvjn", "1234567", "Petr", "Petrov", true, "u2.png", urs2);

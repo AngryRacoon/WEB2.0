@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.dtos.AddModelDto;
+import org.example.dtos.LightModelDto;
 import org.example.dtos.ModelDto;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface ModelService<UUID>{
     void expel (ModelDto model);
     void expel(UUID id);
     Optional<ModelDto> findModel(UUID id);
-    List<ModelDto> getAll();
+    List<LightModelDto> getAll();
 }

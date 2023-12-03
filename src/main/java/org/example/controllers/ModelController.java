@@ -39,7 +39,7 @@ public class ModelController {
     }
 
     @ModelAttribute("modelModel")
-    public AddModelDto initEmployee() {
+    public AddModelDto initModel() {
         return new AddModelDto();
     }
 
@@ -47,7 +47,7 @@ public class ModelController {
     public String addModel(@Valid AddModelDto modelModel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("employeeModel", modelModel);
+            redirectAttributes.addFlashAttribute("modelModel", modelModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modelModel",
                     bindingResult);
             return "redirect:/models/new";
@@ -56,6 +56,13 @@ public class ModelController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/all")
+    public String showAllCompanies(Model model) {
+        model.addAttribute("modelInfos", modelService.getAll());
+        return "model-all";
+    }
+
 
 /*    @PostMapping
     public ResponseEntity<ModelDto> createModel(@RequestBody ModelDto modelDto) {

@@ -22,9 +22,9 @@ public class Brand extends BaseEntity{
     private Set<Model> models;
 
     public Brand(){}
-    public Brand(String name, Set<Model> models){
+    public Brand(String name){
         this.name = name;
-        this.models = models;
+        this.created = new Date();
     }
 
     @Column(name = "name", nullable = false)

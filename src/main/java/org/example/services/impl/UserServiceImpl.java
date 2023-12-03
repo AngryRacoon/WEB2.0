@@ -1,8 +1,13 @@
 package org.example.services.impl;
 
+import org.example.dtos.AddModelDto;
+import org.example.dtos.AddUserDto;
+import org.example.dtos.LightUserDto;
 import org.example.dtos.UserDto;
+import org.example.models.Model;
 import org.example.models.User;
 import org.example.repositories.UserRepository;
+import org.example.repositories.UserRoleRepository;
 import org.example.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +21,30 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService<UUID> {
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
+    private UserRoleRepository userRoleRepository;
     private ModelMapper modelMapper;
 
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    @Autowired
+    public void setUserRoleRepository(UserRoleRepository userRoleRepository) {
+        this.userRoleRepository = userRoleRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     @Override
-    public UserDto register(UserDto user) {
-        if(user.getId()!=null){
-            user.setModified(new Date());
-        }
+    public AddUserDto register(AddUserDto user) {
+
         User u = modelMapper.map(user, User.class);
-        return modelMapper.map(userRepository.save(u),UserDto.class);
+        u.setRole(userRoleRepository.findByRole (user.getRoleName()).orElse(null));
+        u.setActive(false);
+        return modelMapper.map(userRepository.save(u),AddUserDto.class);
     }
 
     @Override
@@ -48,8 +63,8 @@ public class UserServiceImpl implements UserService<UUID> {
     }
 
     @Override
-    public List<UserDto> getAll() {
+    public List<LightUserDto> getAll() {
         return userRepository.findAll().stream().map((u) ->
-                modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
+                modelMapper.map(u, LightUserDto.class)).collect(Collectors.toList());
     }
 }
