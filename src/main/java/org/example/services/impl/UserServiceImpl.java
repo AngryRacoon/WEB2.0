@@ -1,9 +1,6 @@
 package org.example.services.impl;
 
-import org.example.dtos.AddModelDto;
-import org.example.dtos.AddUserDto;
-import org.example.dtos.LightUserDto;
-import org.example.dtos.UserDto;
+import org.example.dtos.*;
 import org.example.models.Model;
 import org.example.models.User;
 import org.example.repositories.UserRepository;
@@ -44,6 +41,7 @@ public class UserServiceImpl implements UserService<UUID> {
         User u = modelMapper.map(user, User.class);
         u.setRole(userRoleRepository.findByRole (user.getRoleName()).orElse(null));
         u.setActive(false);
+        u.setCreated(new Date());
         return modelMapper.map(userRepository.save(u),AddUserDto.class);
     }
 
@@ -66,5 +64,12 @@ public class UserServiceImpl implements UserService<UUID> {
     public List<LightUserDto> getAll() {
         return userRepository.findAll().stream().map((u) ->
                 modelMapper.map(u, LightUserDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void edit(UserDto userDto) {
+            User u = userRepository.findById(userDto.getId()).orElseThrow(() -> new RuntimeException("Model not found"));
+            u.setModified(new Date());
+            modelMapper.map(userRepository.save(u),AddUserDto.class);
     }
 }

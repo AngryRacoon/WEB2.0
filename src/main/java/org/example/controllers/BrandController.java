@@ -36,11 +36,15 @@ public class BrandController {
     }
     @GetMapping("/edit/{id}")
     public String editBrand(@PathVariable UUID id, Model model) {
+
         Optional<LightBrandDto> b  = brandService.findLightBrand(id);
         model.addAttribute("brandModel", b.orElseThrow(() ->
                 new NoSuchElementException("Value not present")));
         return "brand-edit";
     }
+
+
+
 
     @ModelAttribute("brandModel")
     public AddBrandDto initBrand() {

@@ -1,31 +1,15 @@
 package org.example.dtos;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import org.example.models.Model;
 import org.example.models.enums.Category;
 
-import java.util.Date;
-import java.util.Locale;
-import java.util.Set;
 import java.util.UUID;
 
-public class LightModelDto {
+public class XLightModelDto {
     private UUID id;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     private String name;
     private Category category;
 
-
+    private LightBrandDto brand;
 
     public String getName() {
         return name;
@@ -43,9 +27,25 @@ public class LightModelDto {
         this.category = category;
     }
 
+    public LightBrandDto getBrand() {
+        return brand;
+    }
+
+    public void setBrand(LightBrandDto brand) {
+        this.brand = brand;
+    }
+
+    public XLightModelDto(){}
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
 
-    public LightModelDto(){}
+
 
 
 }

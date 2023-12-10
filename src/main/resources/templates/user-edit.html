@@ -9,9 +9,9 @@
             <div class="col-md-2"></div>
             <div class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
                 <div class="justify-content-center">
-                    <h1>Add User</h1>
+                    <h1>Edit User</h1>
                 </div>
-                <form th:action="@{/users/new}"
+                <form th:action="@{/users/edit/{id}(id=${userModel.id})}"
                       th:method="post"
                       th:object="${userModel}"
                       class="m-md-auto w-50 pb-3">
@@ -26,15 +26,7 @@
                             message</small>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="password">Password</label>
-                        <input th:field="*{password}"
-                               th:errorclass="is-invalid"
-                               type="password" class="form-control text-center"
-                               id="password" aria-describedby="password" name="password"/>
-                        <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Error
-                            message</small>
-                    </div>
+
                     <div class="mb-3">
                         <label class="form-label" for="firstName">First Name</label>
                         <input th:field="*{firstName}"
@@ -83,13 +75,13 @@
                     <div class="mb-3">
                         <label class="form-label" for="roleName"><h5>Choose role</h5></label>
                         <select multiple="false" class="form-control text-center"
-                                id="roleName" name="roleName" th:field="*{roleName}">
+                                id="roleName" name="role" th:field="*{role}">
                             <option th:each="r : ${availableRoles}"
                                     th:value="${r.role}"
                                     th:text="${r.role}">Role name
                             </option>
                         </select>
-                        <small th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"
+                        <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}"
                                class="text-danger">Error
                             message</small>
                     </div>

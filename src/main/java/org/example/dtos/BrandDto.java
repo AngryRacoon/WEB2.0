@@ -11,7 +11,7 @@ public class BrandDto {
     private String  name;
     private Date created;
     private Date modified;
-    private Set<Model> models;
+    private Set<LightModelDto> models;
 
     public BrandDto(){}
 
@@ -45,11 +45,11 @@ public class BrandDto {
         this.modified = modified;
     }
 
-    public Set<Model> getModels() {
+    public Set<LightModelDto> getModels() {
         return models;
     }
 
-    public void setModels(Set<Model> models) {
+    public void setModels(Set<LightModelDto> models) {
         this.models = models;
     }
 

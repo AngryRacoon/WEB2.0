@@ -3,6 +3,7 @@ package org.example.controllers;
 import jakarta.validation.Valid;
 import org.example.dtos.AddModelDto;
 import org.example.dtos.AddUserDto;
+import org.example.dtos.ModelDto;
 import org.example.dtos.UserDto;
 import org.example.models.User;
 import org.example.services.BrandService;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -63,12 +66,50 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public String showAllCompanies(Model model) {
+    public String showAllUsers(Model model) {
         model.addAttribute("userInfos", userService.getAll());
         return "user-all";
     }
 
+    @GetMapping("/{id}")
+    public String userDetails(@PathVariable("id") UUID id, Model model) {
 
+        Optional<UserDto> u = userService.findUser(id);
+        model.addAttribute("userDetails", u.orElseThrow(() ->
+                new NoSuchElementException("Value not present")));
+
+        return "user-details";
+    }
+
+    @GetMapping("delete/{id}")
+    public String deleteModel(@PathVariable ("id") UUID id) {
+        userService.expel(id);
+        return "redirect:/users/all";
+    }
+
+
+    @GetMapping("/edit/{id}")
+    public String editUser(@PathVariable UUID id, Model model) {
+        model.addAttribute("availableRoles", userRoleService.getAll());
+        Optional<UserDto> u  = userService.findUser(id);
+        model.addAttribute("userModel", u.orElseThrow(() ->
+                new NoSuchElementException("Value not present")));
+        return "user-edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userModel", userDto);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.modelModel",
+                    bindingResult);
+            return "redirect:/users/edit/{id}";
+        }
+        userService.edit(userDto);
+
+        return "redirect:/";
+    }
 
 /*    @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {

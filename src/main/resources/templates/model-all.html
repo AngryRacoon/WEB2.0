@@ -12,7 +12,7 @@
                 <div th:each="m : ${modelInfos}" class="d-flex flex-column bg-text mb-3">
                     <h3 th:text="'Model: ' + ${m.name}"></h3>
                     <h3 th:text="'Category: ' + ${m.category}"></h3>
-                    <h4><a class="btn-block" th:href="@{/}">Detail
+                    <h4><a class="btn-block" th:href="@{/models/{id}(id=${m.id})}">Detail
                         info</a></h4>
                 </div>
             </div>

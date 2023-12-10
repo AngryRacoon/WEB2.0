@@ -35,7 +35,7 @@ public class BrandServiceImpl implements BrandService<UUID> {
 
     @Override
     public LightBrandDto edit(LightBrandDto brand) {
-        Brand b = modelMapper.map(brand, Brand.class);
+        Brand b = brandRepository.findById(brand.getId()).orElseThrow(() -> new RuntimeException("Brand not found"));
         b.setModified(new Date());
         return modelMapper.map(brandRepository.save(b),LightBrandDto.class);
     }

@@ -1,10 +1,16 @@
 package org.example.services.impl;
 
 
+import org.example.dtos.AddOfferDto;
+import org.example.dtos.LightOfferDto;
+import org.example.dtos.LightOfferDto;
 import org.example.dtos.OfferDto;
 import org.example.models.Offer;
+import org.example.repositories.ModelRepository;
 import org.example.repositories.OfferRepository;
+import org.example.repositories.UserRepository;
 import org.example.services.OfferService;
+import org.example.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,20 +24,38 @@ import java.util.stream.Collectors;
 @Service
 
 public class OfferServiceImpl implements OfferService<UUID> {
-    @Autowired
     private OfferRepository offerRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private ModelRepository modelRepository;
 
+    private UserRepository userRepository;
+
+    private ModelMapper modelMapper;
+    @Autowired
+    public void setOfferRepository(OfferRepository offerRepository) {
+        this.offerRepository = offerRepository;
+    }
+    @Autowired
+    public void setModelRepository(ModelRepository modelRepository) {
+        this.modelRepository = modelRepository;
+    }
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
+    }
 
     @Override
-    public OfferDto register(OfferDto offer) {
-        if(offer.getId()!=null){
-            offer.setModified(new Date());
-        }
+    public void register(AddOfferDto offer) {
+
         Offer o = modelMapper.map(offer, Offer.class);
-        return modelMapper.map(offerRepository.save(o),OfferDto.class);
+        o.setModel(modelRepository.findById(offer.getModel()).orElse(null));
+        o.setUser(userRepository.findById(offer.getUser()).orElse(null));
+        o.setCreated(new Date());
+        offerRepository.saveAndFlush(o);
     }
 
     @Override
@@ -50,9 +74,9 @@ public class OfferServiceImpl implements OfferService<UUID> {
     }
 
     @Override
-    public List<OfferDto> getAll() {
+    public List<LightOfferDto> getAll() {
         return offerRepository.findAll().stream().map((o) ->
-                modelMapper.map(o, OfferDto.class)).collect(Collectors.toList());
+                modelMapper.map(o, LightOfferDto.class)).collect(Collectors.toList());
     }
 
 }

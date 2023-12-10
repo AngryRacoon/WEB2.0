@@ -10,10 +10,19 @@ import java.util.UUID;
 public class UserDto {
     private UUID id;
     private String username;
-    private String password;
+
     private String firstName;
     private String lastName;
     private boolean isActive;
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
     private String imageUrl;
     private Date modified;
     private Date created;
@@ -23,17 +32,6 @@ public class UserDto {
 
     public UserDto(){}
 
-    public UserDto(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl, UserRoleDto role){
-
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.isActive = isActive;
-        this.imageUrl = imageUrl;
-        this.role = role;
-        this.created = new Date();
-    }
     public String getUsername() {
         return username;
     }
@@ -43,13 +41,7 @@ public class UserDto {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;

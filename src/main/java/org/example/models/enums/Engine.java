@@ -1,14 +1,14 @@
 package org.example.models.enums;
 
 public enum Engine{
-    GASOLINE("Gasoline"), DIESEL("Disel"), ELECTRIC("Electric"), HYBRID("Hybrid");
-    private final String description;
+    GASOLINE(1), DIESEL(2), ELECTRIC(3), HYBRID(4);
+    private final int description;
 
-    private Engine(String description){
+    private Engine(int description){
         this.description = description;
     }
 
-    public String getDescription() {
+    public int getDescription() {
         return description;
     }
 };

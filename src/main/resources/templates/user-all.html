@@ -10,9 +10,9 @@
       <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
         <h2 class="text-center text-dark mt-5">All Users</h2>
         <div th:each="u : ${userInfos}" class="d-flex flex-column bg-text mb-3">
-          <h3 th:text="'Usernamr: ' + ${u.username}"></h3>
+          <h3 th:text="'Username: ' + ${u.username}"></h3>
           <h3 th:text="'Full Name: ' + ${u.firstName} + ' ' + ${u.lastName}"></h3>
-          <h4><a class="btn-block" th:href="@{/}">Detail
+          <h4><a class="btn-block" th:href="@{/users/{id}(id=${u.id})}">Detail
             info</a></h4>
         </div>
       </div>

@@ -18,8 +18,9 @@
                         <h4 th:text="'Name: ' + ${brandDetails.name}"></h4>
                         <h4 th:text="'Created: ' + ${brandDetails.created}"></h4>
                         <h4 th:text="'Modified: ' + ${brandDetails.modified}"></h4>
+                        <h4 th:if="${#lists.size(brandDetails.models) > 0}">Models:</h4>
                         <div th:each="m : ${brandDetails.models}" class="d-flex flex-content bg-text mb-3">
-                            <h4 >Models</h4>
+
                             <h4><a class="btn-block" th:href="@{/models/{id}(id = ${m.id})}" th:text="${m.name}"></a></h4>
                         </div>
                         <div class="align-bottom"><a class="btn btn-danger align-bottom"
