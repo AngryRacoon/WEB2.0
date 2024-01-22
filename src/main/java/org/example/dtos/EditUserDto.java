@@ -1,35 +1,24 @@
 package org.example.dtos;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import org.example.models.Offer;
-import org.example.models.UserRole;
 import org.example.models.enums.Role;
-import org.example.util.UniqueUsername;
 
-import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
-public class AddUserDto {
+public class EditUserDto {
 
-    @UniqueUsername
+    private UUID id;
+
+
+
     private String username;
     private String password;
-    private String confirmPassword;
-
     private String firstName;
     private String lastName;
     private String imageUrl;
     private Role roleName;
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 
     public Role getRoleName() {
         return roleName;
@@ -39,11 +28,17 @@ public class AddUserDto {
         this.roleName = roleName;
     }
 
+    public UUID getId() {
+        return id;
+    }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     private Set<OfferDto> offers;
 
-    public AddUserDto() {
+    public EditUserDto() {
     }
 
     @NotEmpty(message = "Username cannot be null or empty!")

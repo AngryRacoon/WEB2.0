@@ -7,8 +7,11 @@ import org.example.models.enums.Engine;
 import org.example.models.enums.Role;
 import org.example.models.enums.Transmission;
 import org.example.services.*;
+import org.example.services.impl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -30,6 +33,8 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Autowired
     private UserService userService;
     @Autowired
+    private AuthService authService;
+    @Autowired
     private UserRoleService userRoleService;
 
     @Override
@@ -37,7 +42,10 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         seedData();
     }
 
-
+    @EventListener(ApplicationReadyEvent.class)
+    public void createAdminUser() {
+        authService.createAdminUser();
+    }
 
     private void seedData() throws IOException {
 //
@@ -59,16 +67,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         UserRoleDto ur2 = new UserRoleDto(Role.USER);
         UserRoleDto urs1 = userRoleService.register(ur1);
         UserRoleDto urs2 = userRoleService.register(ur2);
-//
-//        UserDto u1 = new UserDto("Aboba", "qwerty", "Ivan", "Ivanov", true, "u1.png", urs1);
-//        UserDto u2 = new UserDto("fdvjn", "1234567", "Petr", "Petrov", true, "u2.png", urs2);
-//        UserDto us1 = userService.register(u1);
-//        UserDto us2  = userService.register(u2);
-//
-//        OfferDto o1 = new OfferDto("jdjdsv", Engine.ELECTRIC, "jdsfjjdsf", 1234, BigDecimal.valueOf(100000), Transmission.AUTOMATIC, 2023, ms1, us1 );
-//        OfferDto o2 = new OfferDto("jndjvlxdire", Engine.GASOLINE, "jnxvjnds.png", 1234, BigDecimal.valueOf(500000), Transmission.AUTOMATIC, 2023, ms2, us2 );
-//        OfferDto os1 = offerService.register(o1);
-//        OfferDto os2  = offerService.register(o2);
-//        userService.expel(us1);
+        AddBrandDto b1 = new AddBrandDto("BYD");
+        AddBrandDto b2 = new AddBrandDto("Lada");
+        AddBrandDto bs1 = brandService.register(b1);
+        AddBrandDto bs2 = brandService.register(b2);
+
+
+        AddModelDto m1 = new AddModelDto("Han", Category.Car, "car1.png", 2015, 2022, bs1.getName());
+        AddModelDto m2 = new AddModelDto("2122", Category.Car, "car1.png", 2015, 2022, bs2.getName());
+        AddModelDto ms1 = modelService.register(m1);
+        AddModelDto ms2 = modelService.register(m2);
     }
 }

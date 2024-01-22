@@ -10,10 +10,18 @@ import java.util.UUID;
 public class UserDto {
     private UUID id;
     private String username;
-
     private String firstName;
     private String lastName;
     private boolean isActive;
+
+    public UserDto(String username, String lastName, String firstName, String imageUrl, Date created) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.imageUrl = imageUrl;
+        this.created = created;
+
+    }
 
     public Date getModified() {
         return modified;
@@ -28,7 +36,7 @@ public class UserDto {
     private Date created;
 
     private UserRoleDto role;
-    private Set<OfferDto> offers;
+    private Set<XLightOfferDto> offers;
 
     public UserDto(){}
 
@@ -67,11 +75,11 @@ public class UserDto {
         this.imageUrl = imageUrl;
     }
 
-    public Set<OfferDto> getOffers() {
+    public Set<XLightOfferDto> getOffers() {
         return offers;
     }
 
-    public void setOffers(Set<OfferDto> offers) {
+    public void setOffers(Set<XLightOfferDto> offers) {
         this.offers = offers;
     }
 

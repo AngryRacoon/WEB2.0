@@ -9,9 +9,9 @@
             <div class="col-md-2"></div>
             <div class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
                 <div class="justify-content-center">
-                    <h1>Add Offer</h1>
+                    <h1>Edit offer</h1>
                 </div>
-                <form th:action="@{/offers/new}"
+                <form th:action="@{/offers/edit/{id}(id=${offerModel.id})}"
                       th:method="post"
                       th:object="${offerModel}"
                       class="m-md-auto w-50 pb-3">
@@ -143,7 +143,18 @@
                         </div>
                     </fieldset>
 
-
+                    <div class="mb-3">
+                        <label class="form-label" for="user">User</label>
+                        <select th:field="*{user}"
+                                th:errorclass="is-invalid"
+                                class="form-control text-center"
+                                id="user" aria-describedby="user" name="user">
+                            <option th:each="user : ${availableUsers}"
+                                    th:value="${user.id}"
+                                    th:text="${user.username}">user</option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('user')}" th:errors="*{user}" class="text-danger">Error message</small>
+                    </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="model">Model</label>

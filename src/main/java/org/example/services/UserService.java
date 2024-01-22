@@ -2,6 +2,7 @@ package org.example.services;
 
 import jakarta.validation.Valid;
 import org.example.dtos.AddUserDto;
+import org.example.dtos.EditUserDto;
 import org.example.dtos.LightUserDto;
 import org.example.dtos.UserDto;
 
@@ -15,5 +16,5 @@ public interface UserService<UUID>{
     Optional<UserDto> findUser(UUID id);
     List<LightUserDto> getAll();
 
-    void edit(@Valid UserDto userDto);
+    void edit(@Valid EditUserDto userDto);
 }

@@ -7,6 +7,7 @@ import org.example.dtos.LightBrandDto;
 import org.example.services.BrandService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

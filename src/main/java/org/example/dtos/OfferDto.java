@@ -17,27 +17,23 @@ public class OfferDto {
     private int mileage;
     private BigDecimal price;
     private Transmission transmission;
+
+
     private Date created;
     private Date modified;
     private int year;
-    private ModelDto model;
+    private XLightModelDto model;
 
-    private UserDto user;
+    private LightUserDto user;
 
     public OfferDto (){}
-    public OfferDto(String description, Engine engine, String imageUrl, int mileage, BigDecimal price,
-                 Transmission transmission, int year, ModelDto model, UserDto user){
-        this.description = description;
-        this.engine = engine;
-        this.imageUrl = imageUrl;
-        this.mileage = mileage;
-        this.price = price;
-        this.transmission = transmission;
-        this.year = year;
-        this.model = model;
-        this.user = user;
-        this.created = new Date();
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public Date getModified() {
+        return modified;
     }
 
     public String getImageUrl() {
@@ -88,11 +84,11 @@ public class OfferDto {
         this.engine = engine;
     }
 
-    public UserDto getUser() {
+    public LightUserDto getUser() {
         return user;
     }
 
-    public void setUser(UserDto user) {
+    public void setUser(LightUserDto user) {
         this.user = user;
     }
 
@@ -104,11 +100,11 @@ public class OfferDto {
         this.description = description;
     }
 
-    public ModelDto getModel() {
+    public XLightModelDto getModel() {
         return model;
     }
 
-    public void setModel(ModelDto model) {
+    public void setModel(XLightModelDto model) {
         this.model = model;
     }
 

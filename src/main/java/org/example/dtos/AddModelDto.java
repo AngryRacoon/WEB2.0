@@ -19,8 +19,17 @@ public class AddModelDto {
     private int endYear;
     private String brandName;
 
+    public AddModelDto(String name, Category category, String imageUrl, int startYear, int endYear, String brandName) {
+        this.name = name;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.startYear = startYear;
+        this.endYear = endYear;
+        this.brandName = brandName;
+    }
 
-@NotEmpty(message = "Model name must not be null or empty!")
+
+    @NotEmpty(message = "Model name must not be null or empty!")
     public String getName() {
         return name;
     }

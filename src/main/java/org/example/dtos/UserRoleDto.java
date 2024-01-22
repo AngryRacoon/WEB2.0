@@ -9,22 +9,11 @@ import java.util.UUID;
 public class UserRoleDto {
     private UUID id;
     private Role role;
-    private Set<UserDto> users;
+
     public UserRoleDto(){}
-    public UserRoleDto(Role role, Set<UserDto> users){
-        this.role = role;
-        this.users = users;
-    }
+
     public UserRoleDto(Role role){
         this.role = role;
-    }
-
-    public Set<UserDto> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<UserDto> users) {
-        this.users = users;
     }
 
     public Role getRole() {

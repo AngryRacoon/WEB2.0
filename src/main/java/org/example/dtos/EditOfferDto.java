@@ -6,10 +6,10 @@ import org.example.models.enums.Engine;
 import org.example.models.enums.Transmission;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.UUID;
 
-public class AddOfferDto {
+public class EditOfferDto {
+        private UUID id;
         private String description;
         private Engine engine;
         private String imageUrl;
@@ -18,20 +18,18 @@ public class AddOfferDto {
         private Transmission transmission;
         private int year;
         private UUID model;
-        private String user;
-        public AddOfferDto() {
-        }
+        private UUID user;
 
-    public AddOfferDto(String description, Engine engine, String imageUrl, int mileage, BigDecimal bigDecimal, Transmission transmission, int year, String model, String user) {
-        this.description = description;
-        this.engine = engine;
-        this.imageUrl = imageUrl;
-        this.mileage = mileage;
-        this.price = bigDecimal;
-        this.transmission = transmission;
-        this.year = year;
-        this.model = UUID.fromString(model);
-        this.user = user;
+    public EditOfferDto() {
+
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     @NotEmpty(message = "Description cannot be empty")
@@ -98,11 +96,12 @@ public class AddOfferDto {
     public void setModel(UUID model) {
         this.model = model;
     }
-    public String getUser() {
+@NotNull(message = "User cannot be null")
+    public UUID getUser() {
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(UUID user) {
         this.user = user;
     }
 }

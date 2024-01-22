@@ -28,17 +28,13 @@ public class User extends BaseEntity {
 
     public User(){}
 
-    public User(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl,
-                UserRole role,Set<Offer> offers, Date created, Date modified){
+    public User(String username, String password, String firstName, String lastName, boolean isActive, String imageUrl){
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.isActive = isActive;
         this.imageUrl = imageUrl;
-        this.role = role;
-        this.offers = offers;
-        this.modified = modified;
         this.created = new Date();
     }
 

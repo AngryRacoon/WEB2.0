@@ -9,6 +9,14 @@
             <div class="col-md-2"></div>
             <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
                 <h2 class="text-center text-dark mt-5">All Offers</h2>
+                <h3>Sort</h3>
+                <a th:href="@{/offers/all(sort='priceasc')}">By price(asc)</a>
+                <a th:href="@{/offers/all(sort='pricedesc')}">By price (desc)</a>
+                <a th:href="@{/offers/all(sort='yearolder')}">By year (Older)</a>
+                <a th:href="@{/offers/all(sort='yearnewer')}">By year (Newer)</a>
+                <a th:href="@{/offers/all}">Reset</a>
+            </div>
+                </div>
                 <div th:each="o : ${offersInfos}" class="d-flex flex-column bg-text mb-3">
                     <h3 th:text="'Brand: ' + ${o.model.brand.name}"></h3>
                     <h3 th:text="'Model: ' + ${o.model.name}"></h3>

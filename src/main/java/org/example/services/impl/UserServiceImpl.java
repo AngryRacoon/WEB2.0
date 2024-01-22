@@ -67,9 +67,12 @@ public class UserServiceImpl implements UserService<UUID> {
     }
 
     @Override
-    public void edit(UserDto userDto) {
-            User u = userRepository.findById(userDto.getId()).orElseThrow(() -> new RuntimeException("Model not found"));
-            u.setModified(new Date());
-            modelMapper.map(userRepository.save(u),AddUserDto.class);
+    public void edit(EditUserDto userDto) {
+            User u = userRepository.findById(userDto.getId()).orElseThrow(() -> new RuntimeException("User not found"));
+            User u1 = modelMapper.map(userDto, User.class);
+            u1.setPassword(u.getPassword());
+            u1.setCreated(u.getCreated());
+            u1.setModified(new Date());
+            modelMapper.map(userRepository.save(u1),EditUserDto.class);
     }
 }

@@ -1,9 +1,7 @@
 package org.example.services;
 
-import org.example.dtos.AddOfferDto;
-import org.example.dtos.BrandDto;
-import org.example.dtos.LightOfferDto;
-import org.example.dtos.OfferDto;
+import jakarta.validation.Valid;
+import org.example.dtos.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +12,6 @@ public interface OfferService<UUID>{
     void expel(UUID id);
     Optional<OfferDto> findOffer(UUID id);
     List<LightOfferDto> getAll();
+    void edit(@Valid EditOfferDto userDto);
+
 }
